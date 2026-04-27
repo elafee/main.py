@@ -1,8 +1,9 @@
 import discord
 from discord.ext import commands
 from discord import app_commands
+import os
 
-TOKEN = ""
+TOKEN = os.getenv("TOKEN")
 
 intents = discord.Intents.default()
 bot = commands.Bot(command_prefix="!", intents=intents)
@@ -13,17 +14,14 @@ async def on_ready():
     print("Bot is ready")
 
 @bot.tree.command(name="hbd", description="Birthday message")
-@app_commands.describe(message="اكتبي التهنئة")
 async def hbd(interaction: discord.Interaction, message: str):
 
     text = f"""Happy Birthday <@949314788964573234> ⋆.𐙚 ̊
-　.　　ﾟ .　 ݁ ⠀⠀* ⠀⠀. ˚ 　.　　ﾟ .　 ݁ ⠀⠀* ⠀⠀. ˚
+　.　　ﾟ .　 ݁ ⠀⠀* ⠀⠀. ˚
 {interaction.user.mention} 🩷 Wishes you a happy birthday and says :
-　.　　ﾟ .　 ݁ ⠀⠀* ⠀⠀. ˚ 　.　　ﾟ .　 ݁ ⠀⠀* ⠀⠀. ˚
 
 {message}
 
-　.　　ﾟ .　 ݁ ⠀⠀* ⠀⠀. ˚ 　.　　ﾟ .　 ݁ ⠀⠀* ⠀⠀. ˚
 We love you ✿"""
 
     await interaction.response.send_message("Thank you ✨", ephemeral=True)
